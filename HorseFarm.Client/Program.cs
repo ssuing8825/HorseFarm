@@ -20,10 +20,17 @@ namespace HorseFarm.Client
             while (true)
             {
 
+                Console.WriteLine("Type 'exit' to end or hit enter to receive messages"); // Prompt
+                string line = Console.ReadLine(); // Get string from user
+                if (line == "exit") // Check string
+                {
+                    break;
+                }
+                
                 ReceiveAllMessagesFromSubscripions(factory);
-
-                Thread.Sleep(looptime);
                 Console.WriteLine("".PadRight(50, '-'));
+                Console.WriteLine();
+                Console.WriteLine();
             }
             // RunLoop();
         }
