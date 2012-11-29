@@ -11,6 +11,12 @@ namespace HorseFarm.Rest
 {
     class Program
     {
+        //http://msdn.microsoft.com/en-us/library/windowsazure/ee706766.aspx
+        //http://wwww.bencode.net/service-bus-token-renewal
+
+        //a bunch of examples
+        //http://msdn.microsoft.com/en-us/library/windowsazure/ee706766.aspx
+
         static string token;
         static Uri namespaceBaseAddress;
         static void Main(string[] args)
