@@ -1,0 +1,22 @@
+Your events will look similar to as follows:
+
+{
+  "EventClassification": "SomeClickEvent",
+  "EventId": "ee13b398-e3a4-4c72-bb9b-a52695b21ef8",
+  "CorrelationId": null,
+  "EventTime": "2012-10-26T12:25:56.4668546+00:00",
+  "EventType": 2,
+  "EventSequenceNumber": 1,
+  "MachineName": "SomeMachine",
+  "WindowsIdentityName": "Domain\User",
+  "SourceAssemblyName": "Geico.Applications.Foundation.EventProcessing.IntegrationTests",
+  "SourceAssemblyVersion": "2.0.0.0",
+  "SourceAssemblyFileVersion": "2.0.0.0",
+  "SourceAssemblyInformationalVersion": "2.0",
+  "SourceAssemblyProductName": "IntegrationTests",
+  "BusinessKeys": null,
+  "Details": {
+    "DetailClassification": "UIAjax",
+    "Stage": "Starting-Vehicle-Add"
+  }
+} 

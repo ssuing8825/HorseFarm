@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>Applications.Foundation.EventProcessing</id>
+    <version>1.0.34-Beta</version>
+    <authors>MAG</authors>
+    <owners>MAG</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>GEICO business event core processing library.</description>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="[4.5, 4.6)" />
+      <dependency id="Applications.Foundation.ServiceModel.ChannelBuilder" version="[1.4, 2.0)" />
+      <dependency id="Applications.Foundation.ExceptionHandling.Aspects" version="[3.0, 4.0)" />
+    </dependencies>
+  </metadata>
+</package>

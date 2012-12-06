@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Service="Geico.Applications.Foundation.EventProcessing.Services.BusinessEventSqlStagingService, Geico.Applications.Foundation.EventProcessing" %>

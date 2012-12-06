@@ -1,0 +1,45 @@
+﻿<?xml version="1.0"?>
+<configuration>
+
+  <system.serviceModel>
+
+    <services>
+
+      <!-- This configuration is installed with the Applications.Foundation.EventProcessing.StagingService package -->
+      <service name="Geico.Applications.Foundation.EventProcessing.Services.BusinessEventSqlStagingService">
+        
+        <endpoint address="" binding="wsHttpBinding" bindingConfiguration="wsHttp16KBTxServerBinding" contract="Geico.Applications.Foundation.EventProcessing.IBusinessEventService" />
+        
+        <!-- Expose this endpoint if: are using IIS and MSMQ IIS activation...otherwise just use HTTP -->
+        <!-- online resource: http://blogs.msdn.com/b/tomholl/archive/2008/07/12/msmq-wcf-and-iis-getting-them-to-play-nice-part-1.aspx -->
+        <!--<endpoint address="net.msmq://localhost/private/EventProcessing.Staging/Staging.svc"
+                 binding="netMsmqBinding"
+                 bindingConfiguration="msmq16KBTxBinding"
+                 contract="Geico.Applications.Foundation.EventProcessing.IBusinessEventService" />-->
+      </service>
+
+    </services>
+
+    <bindings>
+
+      <wsHttpBinding>
+
+        <!-- This configuration is installed with the Applications.Foundation.EventProcessing.StagingService package -->
+        <binding name="wsHttp16KBTxServerBinding" maxReceivedMessageSize="16384" transactionFlow="true">
+          <security mode="None"/>
+        </binding>
+      </wsHttpBinding>
+
+      <!-- This configuration is installed with the Applications.Foundation.EventProcessing.StagingService package -->
+      <!-- Use this binding if you intend on using transactional MSMQ queues. -->
+      <netMsmqBinding>
+        <binding name="msmq16KBTxBinding" maxReceivedMessageSize="16384" durable="true" exactlyOnce="true" receiveRetryCount="4">
+          <security mode="None" />
+        </binding>
+      </netMsmqBinding>
+
+    </bindings>
+
+  </system.serviceModel>
+
+</configuration>

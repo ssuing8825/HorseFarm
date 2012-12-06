@@ -16,6 +16,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
+    <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,9 +36,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Geico.Applications.Foundation.EventProcessing">
+      <HintPath>..\packages\Applications.Foundation.EventProcessing.1.0.34-Beta\lib\net40\Geico.Applications.Foundation.EventProcessing.dll</HintPath>
+    </Reference>
+    <Reference Include="Geico.Applications.Foundation.ExceptionHandling.Aspects">
+      <HintPath>..\packages\Applications.Foundation.ExceptionHandling.Aspects.3.0.20-Beta\lib\net40\Geico.Applications.Foundation.ExceptionHandling.Aspects.dll</HintPath>
+    </Reference>
+    <Reference Include="Geico.Applications.Foundation.Exceptions">
+      <HintPath>..\packages\Applications.Foundation.Exceptions.3.0.16-Beta\lib\net40\Geico.Applications.Foundation.Exceptions.dll</HintPath>
+    </Reference>
+    <Reference Include="Geico.Applications.Foundation.Logging">
+      <HintPath>..\packages\Applications.Foundation.Logging.3.0.14-Beta\lib\net40\Geico.Applications.Foundation.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Geico.Applications.Foundation.Notifications">
+      <HintPath>..\packages\Applications.Foundation.Notifications.1.1.11-Beta\lib\Geico.Applications.Foundation.Notifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Geico.Applications.Foundation.ServiceModel.ChannelBuilder">
+      <HintPath>..\packages\Applications.Foundation.ServiceModel.ChannelBuilder.1.4.19-Beta\lib\Geico.Applications.Foundation.ServiceModel.ChannelBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Geico.Platform.Log4Net.Logging">
+      <HintPath>..\packages\Platform.Log4Net.Logging.3.0.16-Beta\lib\net40\Geico.Platform.Log4Net.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.ServiceBus">
-      <HintPath>..\packages\ServiceBus.v1_0.1.0.1.0\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.2.1.6.15\lib\net20\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -62,9 +90,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <Private>True</Private>
@@ -133,12 +158,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logging\EventKeys.cs" />
+    <Compile Include="Logging\HorseServiceEvent.cs" />
+    <Compile Include="Logging\LoggingFilterAttribute.cs" />
+    <Compile Include="Logging\LoggingHandler.cs" />
     <Compile Include="Models\Horse.cs" />
     <Compile Include="Models\HorseData\HorseRepository.cs" />
     <Compile Include="Models\HorseData\IHorseRepository.cs" />
     <Compile Include="Models\HorseData\HorseContext.cs" />
-    <Compile Include="Models\HorseNotification.cs" />
-    <Compile Include="Models\IHorseNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -213,7 +240,9 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -247,12 +276,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HorseFarm\HorseFarm.Common.csproj">
-      <Project>{59AB8B16-A302-425F-8959-B7EADDF77660}</Project>
-      <Name>HorseFarm.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -281,6 +304,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\PostSharp.2.1.6.15\tools\PostSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>Applications.Foundation.ServiceModel.ChannelBuilder</id>
+    <version>1.4.19-Beta</version>
+    <authors>Bruce Krakower</authors>
+    <owners>Bruce Krakower</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>WCF channel builder library supports building and caching of WCF channels.</description>
+  </metadata>
+</package>

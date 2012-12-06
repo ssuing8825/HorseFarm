@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<configuration>
+
+  <system.serviceModel>
+
+    <services>
+
+      <!-- This configuration is installed with the Applications.Foundation.EventProcessing.LoggingService package -->
+      <service name="Geico.Applications.Foundation.EventProcessing.Services.BusinessEventLoggingService">
+        <endpoint address="" binding="wsHttpBinding" bindingConfiguration="wsHttp16KBTxServerBinding" contract="Geico.Applications.Foundation.EventProcessing.IBusinessEventService" />
+      </service>
+
+    </services>
+
+    <bindings>
+
+      <wsHttpBinding>
+
+        <!-- This configuration is installed with the Applications.Foundation.EventProcessing.LoggingService package -->
+        <binding name="wsHttp16KBTxServerBinding" maxReceivedMessageSize="16384" transactionFlow="true">
+          <security mode="None"/>
+        </binding>
+      
+      </wsHttpBinding>
+
+    </bindings>
+
+  </system.serviceModel>
+
+</configuration>

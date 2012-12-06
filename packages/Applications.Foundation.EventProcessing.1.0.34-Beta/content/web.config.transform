@@ -1,0 +1,49 @@
+﻿<?xml version="1.0"?>
+<configuration>
+
+  <configSections>
+    <!-- This configuration is installed with the Applications.Foundation.EventProcessing package -->
+    <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+  </configSections>
+
+  <system.serviceModel>
+
+    <bindings>
+      <wsHttpBinding>
+        <!-- This configuration is installed with the Applications.Foundation.EventProcessing package -->
+        <!-- Uncomment this endpoint for use in web.config or app.config files for your application. Leave this entry commented out for the LoggingService, StagingService or Testability packages.-->
+        <!--<binding name="wsHttpBindingConfiguration" maxReceivedMessageSize="16384" transactionFlow="true">
+          <security mode="None"/>
+        </binding>-->
+      </wsHttpBinding>
+    </bindings>
+
+    <client>
+      <!-- This configuration is installed with the Applications.Foundation.EventProcessing package -->
+      <!-- The address below will be the local address of the target web service and will vary by solution and IIS or IIS Express -->
+      <!-- Uncomment this endpoint for use in web.config or app.config files for your application. Leave this entry commented out for the LoggingService, StagingService or Testability packages.-->
+      <!--<endpoint name="BusinessEventService"
+              address="http://your.target.endpoint/"
+              binding="wsHttpBinding"
+              bindingConfiguration="wsHttpBindingConfiguration"
+              contract="Geico.Applications.Foundation.EventProcessing.IBusinessEventService"/>-->
+    </client>
+  </system.serviceModel>
+
+  <log4net>
+    <appender name="RollingLogFileAppender" type="log4net.Appender.RollingFileAppender">
+      <file value="Logs\BusinessEvents.log "/>
+      <appendToFile value="true"/>
+      <rollingStyle value="Date"/>
+      <datePattern value="yyyyMMdd"/>
+      <layout type="log4net.Layout.PatternLayout">------------------- %date ------------------- %newline%message%newline</layout>
+    </appender>
+
+    <logger name="Geico.Applications.Foundation.EventProcessing">
+      <appender-ref ref="RollingLogFileAppender" />
+      <level value="ALL"/>
+    </logger>
+
+  </log4net>
+
+</configuration>

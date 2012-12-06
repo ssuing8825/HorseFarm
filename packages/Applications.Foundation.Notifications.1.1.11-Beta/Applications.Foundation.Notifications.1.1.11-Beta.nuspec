@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>Applications.Foundation.Notifications</id>
+    <version>1.1.11-Beta</version>
+    <authors>Rama Rao</authors>
+    <owners>Rama Rao</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides classes to create and resolve messages</description>
+  </metadata>
+</package>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>Applications.Foundation.EventProcessing.LoggingService</id>
+    <version>1.0.34-Beta</version>
+    <authors>MAG</authors>
+    <owners>MAG</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Deployable service that will write business events to an arbitrary log4net appender (development use).</description>
+    <dependencies>
+      <dependency id="Applications.Foundation.EventProcessing" version="[1.0, 1.1)" />
+    </dependencies>
+  </metadata>
+</package>
