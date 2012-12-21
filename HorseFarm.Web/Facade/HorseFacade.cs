@@ -16,6 +16,9 @@ namespace HorseFarm.Web.Facade
         public void Delete(int id)
         {
             repository.Delete(id);
+
+            //Coll wcf = 
+
         }
 
         public Models.Horse Get(int id)
@@ -29,6 +32,8 @@ namespace HorseFarm.Web.Facade
                     DateBounced = "10/4/2012 1:28PM"
                 });
 
+
+         
 
             return repository.Get(id);
         }

@@ -31,20 +31,19 @@ namespace HorseFarm.Web.Logging
 
         private void LogRequestLoggingInfo(HttpRequestMessage request)
         {
+            dynamic keys = new
+                {
+                    HttpMethod = request.Method.Method,
+                    UriAccessed = request.RequestUri.AbsoluteUri,
+                    AbsolutePath = request.RequestUri.AbsolutePath,
+                    IpAddress = HttpContext.Current != null ? HttpContext.Current.Request.UserHostAddress : "0.0.0.0",
+                    MessageType = "Request",
+                    Headers = ExtractMessageHeadersIntoLoggingInfo(request.Headers.ToList()),
+                    MessageId = (int)EventClassification.WebServiceRequest
+                    
+                };
 
-            dynamic keys = new ExpandoObject();
-            keys.HttpMethod = request.Method.Method;
-            keys.UriAccessed = request.RequestUri.AbsoluteUri;
-            keys.IpAddress = HttpContext.Current != null ? HttpContext.Current.Request.UserHostAddress : "0.0.0.0";
-            keys.MessageType = "Request";
-
-            ExtractMessageHeadersIntoLoggingInfo(keys, request.Headers.ToList());
-
-
-
-
-            var e =
-            new HorseServiceEvent(request.RequestUri.AbsolutePath).WithKeys(new EventKeys
+            var e = new HorseServiceEvent(EventClassification.WebServiceRequest.ToString()).WithKeys(new EventKeys
                 {
                     ExceedClientId = "asdf",
                     PolicyNumber = "123"
@@ -95,9 +94,9 @@ namespace HorseFarm.Web.Logging
         //    _repository.Log(info);
         //}
 
-        private void ExtractMessageHeadersIntoLoggingInfo(dynamic info, List<KeyValuePair<string, IEnumerable<string>>> headers)
+        private string ExtractMessageHeadersIntoLoggingInfo(List<KeyValuePair<string, IEnumerable<string>>> headers)
         {
-            var dictionary = (IDictionary<string, object>)info;
+            var headersString = new StringBuilder();
 
             headers.ForEach(h =>
             {
@@ -117,8 +116,9 @@ namespace HorseFarm.Web.Logging
                 }
 
 
-                dictionary.Add(h.Key, headerValues.ToString());
+                headersString.AppendFormat("{1}: {0}", h.Key, headerValues.ToString());
             });
+            return headersString.ToString();
         }
     }
 

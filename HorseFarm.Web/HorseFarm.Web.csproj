@@ -158,6 +158,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logging\EventClassification.cs" />
     <Compile Include="Logging\EventKeys.cs" />
     <Compile Include="Logging\HorseServiceEvent.cs" />
     <Compile Include="Logging\LoggingFilterAttribute.cs" />
